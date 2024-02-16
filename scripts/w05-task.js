@@ -10,22 +10,21 @@ let templeList = [];
 
 const displayTemples = (temples) => {
 
-    templeList.forEach(temples => {
-        let article = document.createElement('article');
-        let h3 = document.createElement('h3');
-    
-        h3.textContent = temples;
-        
-        let img = document.createElement('img');
+    temples.forEach(temple => {
+        const article = document.createElement('article');
+        const h3 = document.createElement('h3');
+        h3.textContent = temple.templeName;
 
-        document.getElementById("photo").src = "images/IMG-9057.jpg";
-        document.getElementById("photo").alt = "Photo of me";
+        // const img = new Image();
+        const img = document.createElement('img');
+        img.src = temple.imageUrl;
+        img.alt = temple.location;
         
-        article.appendChild(h3, img);
+        article.appendChild(h3);
+        article.appendChild(img);
         templeElements.appendChild(article);
     });
 }
-
 
 /* async getTemples Function using fetch()*/
 
@@ -41,11 +40,39 @@ console.log(templeList)
 
 /* reset Function */
 
-
+const reset = () => {
+    templeElements.innerHTML = '';
+}
 
 /* filterTemples Function */
 
+const filterTemples = (temples) => {
+    reset();
 
-getTemples();
+    const filter = document.getElementById('filtered').value;
+    let filteredTemples;
+
+    switch(filter) {
+        case 'utah':
+            filteredTemples = temples.filter(temple => temple.location.includes('Utah'));
+            break;
+        case 'notutah':
+            filteredTemples = temples.filter(temple => !temple.location.includes('Utah'));
+            break;
+        case 'older':
+            filteredTemples = temples.filter(temple => new Date(temple.dedicated) < new Date(1950, 0, 1));
+            break;
+        case 'all':
+        default:
+            filteredTemples = temples;
+            break;
+    }
+
+    displayTemples(filteredTemples);
+}
 
 /* Event Listener */
+
+document.querySelector("#filtered").addEventListener("change", () => { filterTemples(templeList) });
+
+getTemples();
