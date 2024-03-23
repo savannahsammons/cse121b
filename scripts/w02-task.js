@@ -36,17 +36,21 @@ let favoriteFoods = ["Rice","Chicken","Pasta","Tacos"]
 
 foodElement.innerHTML += `<br>${favoriteFoods}`;
 
+
 console.log(favoriteFoods[0]);
 
 let newFavoriteFood = 'Potatoes'
+
 
 favoriteFoods.push (newFavoriteFood);
 
 foodElement.innerHTML += `<br>${favoriteFoods}`;
 
+
 let newCopyFirst = favoriteFoods.slice(1);
 
 foodElement.innerHTML += `<br>${newCopyFirst}`;
+
 
 let newCopyLast = favoriteFoods.slice(0, -1);
 
