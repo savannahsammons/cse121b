@@ -76,10 +76,9 @@ function ifCheckbox (subtotal) {
 
 function getSubtotal () {
     let subtotal = Number(document.querySelector('#subtotal').value);
-    // ifCheckbox(subtotal);
 
     const totalElement = document.getElementById('total');
-    totalElement.innerHTML = `$ ${ifCheckbox(subtotal).toFixed(2)}`;
+    totalElement.innerHTML = `$ ${ifCheckbox(subtotal)}`;
 }
 
 document.querySelector('#getTotal').addEventListener('click', getSubtotal);
