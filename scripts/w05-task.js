@@ -9,7 +9,6 @@ let templeList = [];
 /* async displayTemples Function */
 
 const displayTemples = (temples) => {
-
     temples.forEach(temple => {
         const article = document.createElement('article');
         const h3 = document.createElement('h3');

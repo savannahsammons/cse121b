@@ -6,7 +6,7 @@
 
 let fullName = 'Savannah Sammons';
 
-let currentYear = '2024';
+// let currentYear = date;
 
 let profilePicture = 'images/IMG-9057.jpg';
 
@@ -24,6 +24,8 @@ const imageElement = document.querySelector('img');
 
 nameElement.innerHTML = `<strong>${fullName}</strong>`;
 
+// nameElement.textContent = new Date().getFullYear();
+
 imageElement.setAttribute('src', profilePicture)
 imageElement.setAttribute('alt', `Profile image of IMG-9057.jpg`)
 
@@ -32,10 +34,21 @@ imageElement.setAttribute('alt', `Profile image of IMG-9057.jpg`)
 
 let favoriteFoods = ["Rice","Chicken","Pasta","Tacos"]
 
+foodElement.innerHTML += `<br>${favoriteFoods}`;
+
 console.log(favoriteFoods[0]);
 
 let newFavoriteFood = 'Potatoes'
 
-favoriteFoods.push (newFavoriteFood)
+favoriteFoods.push (newFavoriteFood);
 
+foodElement.innerHTML += `<br>${favoriteFoods}`;
+
+let newCopyFirst = favoriteFoods.slice(1);
+
+foodElement.innerHTML += `<br>${newCopyFirst}`;
+
+let newCopyLast = favoriteFoods.slice(0, -1);
+
+foodElement.innerHTML += `<br>${newCopyLast}`;
 

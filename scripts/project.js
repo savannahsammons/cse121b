@@ -1,47 +1,30 @@
-/* W05: Programming Tasks */
 
-/* Declare and initialize global variables */
+const catElement = document.getElementById('catFact');
 
-const catElements = document.getElementById('catFact');
+let catList = [];
 
-let catsList = [];
-
-/* async displayTemples Function */
-
-const displayFacts = (catFact) => {
-
-        const article = document.createElement('article');
+const displayFacts = (cats) => {
+    cats.farEach(cat => {
         const h3 = document.createElement('h3');
-        h3.textContent = 'catFact';
-
-        const p = document.createElement('p');
-        p.textContent = catFact.text;
-
-        article.appendChild(h3);
-        article.appendChild(p);
-        catElements.appendChild(article);
+        h3.textContent = cat.text;
+        catElement.appendChild(h3);
+    })
 }
 
-/* async getFacts Function using fetch()*/
-document.getElementById('getFact').addEventListener('click', getFacts);
-
-const getFacts = async () => {
-    const response = await fetch('https://cat-fact.herokuapp.com/facts/random');
+const getCatFacts = async () => {
+    const response = await fetch("catFacts.json");
     if (response.ok) {
-        catsList = await response.json();
-        displayFacts(catsList);
-    }
+        catList = await response.json();
+        displayFacts(catList);
+      }
 }
-
-console.log(catsList);
-
-/* reset Function */
 
 const reset = () => {
-    catElements.innerHTML = '';
+    catElement.innerHTML = '';
 }
 
-/* Event Listener */
+const buttons = document.getElementById('getFact').value;
 
+document.getElementById("getFact").addEventListener("click", () => { displayFacts(catList) });
 
-getFacts();
+displayFacts();
