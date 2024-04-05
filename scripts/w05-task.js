@@ -35,7 +35,7 @@ const getTemples = async () => {
       }
 }
 
-console.log(templeList)
+// console.log(templeList)
 
 /* reset Function */
 

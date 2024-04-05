@@ -1,30 +1,19 @@
+document.addEventListener('DOMContentLoaded', function getCatFact() {
+    let catsButton = document.getElementById('getFact');
+    let factDisplay = document.getElementById('factDisplay');
 
-const catElement = document.getElementById('catFact');
-
-let catList = [];
-
-const displayFacts = (cats) => {
-    cats.farEach(cat => {
-        const h3 = document.createElement('h3');
-        h3.textContent = cat.text;
-        catElement.appendChild(h3);
-    })
-}
-
-const getCatFacts = async () => {
-    const response = await fetch("catFacts.json");
-    if (response.ok) {
-        catList = await response.json();
-        displayFacts(catList);
-      }
-}
-
-const reset = () => {
-    catElement.innerHTML = '';
-}
-
-const buttons = document.getElementById('getFact').value;
-
-document.getElementById("getFact").addEventListener("click", () => { displayFacts(catList) });
-
-displayFacts();
+    catsButton.addEventListener('click', function whenButtonClicked() {
+        fetch('https://meowfacts.herokuapp.com/')
+            .then(response => response.json())
+            .then(data => {
+                if (data.data && data.data.length > 0) {
+                    // Use of template literal and array method (map)
+                    const facts = data.data.map((fact, index) => `Fact ${index + 1}: ${fact}`).join('\n');
+                    factDisplay.textContent = facts;
+                } else {
+                    // Conditional branching
+                    factDisplay.textContent = "No cat facts available right now.";
+                }
+            })
+    });
+});
